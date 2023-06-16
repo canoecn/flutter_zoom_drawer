@@ -789,16 +789,22 @@ class ZoomDrawerState extends State<ZoomDrawer>
           );
           break;
         default:
-          parentWidget = StyleDefaultWidget(
-            animationController: _animationController,
-            mainScreenWidget: mainScreenWidget,
-            menuScreenWidget: menuScreenWidget,
-            angle: widget.angle,
-            showShadow: widget.showShadow,
-            shadowLayer1Color: widget.shadowLayer1Color,
-            shadowLayer2Color: widget.shadowLayer2Color,
-            drawerShadowsBackgroundColor: widget.drawerShadowsBackgroundColor,
-            applyDefaultStyle: _applyDefaultStyle,
+          parentWidget = AnimatedBuilder(
+            animation: _animationController,
+            builder: (context, _) {
+              return StyleDefaultWidget(
+                animationController: _animationController,
+                mainScreenWidget: mainScreenWidget,
+                menuScreenWidget: menuScreenWidget,
+                angle: widget.angle,
+                showShadow: widget.showShadow,
+                shadowLayer1Color: widget.shadowLayer1Color,
+                shadowLayer2Color: widget.shadowLayer2Color,
+                drawerShadowsBackgroundColor:
+                    widget.drawerShadowsBackgroundColor,
+                applyDefaultStyle: _applyDefaultStyle,
+              );
+            },
           );
       }
     }
